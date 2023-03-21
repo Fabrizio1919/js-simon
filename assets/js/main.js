@@ -14,6 +14,7 @@ function myRandomNumbers(numeroDiValori, max, min, destinationNumb) {
     destinationNumb.length = 0;
     while (numeroDiValori > destinationNumb.length) {
         let number = myRandomNumber(min, max);
+        // 
         if (destinationNumb.indexOf(number) === -1) {
             destinationNumb.push(number);
         }
@@ -25,8 +26,8 @@ const numberUserContiner = document.getElementById('numbersUser');
 const conferm = document.getElementById('buttonConferm');
 const startButton = document.querySelector('.startButton')
 const timer = document.querySelector('.timer')
-const numbersCpu = [];
-const numbersPlayer = [];
+let numbersCpu = [];
+let numbersPlayer = [];
 const numberOfNumbers = 5;
 
 
@@ -34,3 +35,36 @@ const numberOfNumbers = 5;
 // genera un array di 5 numeri random 
 myRandomNumbers(numberOfNumbers, 9, 0, numbersCpu);
 console.log(numbersCpu);
+
+for (let i = 0; i < 5; i++) {
+    numbersCpu = myRandomNumber(9, 0);
+    console.log(numbersCpu);
+    myRandomNumber.push(numbersCpu);
+  }
+  console.log(numbersCpu);
+  alert("Cerca di memorizzare questi cinque numeri: " + numbersCpu);
+
+
+  setTimeout(function() {
+    for (var i = 0; i < 5; i++) {
+      numbersPlayer = parseInt(prompt("inserisci i numeri che ricordi"));
+      for (var f = 0; f < numbersCpu.length; f++) {
+        if (numberUserContiner == numberCpuContiner[f]) {
+          numbersPlayer.push(numbersCpu);
+        }
+      }
+
+    }
+    alert("Hai indovinato " + numbersPlayer.length + " numeri. Esattamente i numeri: " + numbersCpu)
+    console.log(numbersCpu)
+  }, 30000)
+
+
+
+
+
+
+  
+
+
+
