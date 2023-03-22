@@ -5,20 +5,25 @@ Dopo che sono stati inseriti i 5 numeri, il software dice quanti e quali dei num
  */
 
 //Genero un 5 numeri casuale
-function myRandomNumber(min, max) {
-    return Math.floor(Math.random() * (max - min + 1) + min);
+function myRandomNumber(max, min) {
+    return Math.floor((Math.random() *max) + min);
 }
 
 // FUNZIONI CHE CREA UN ARRAY DI X NUMERI CASUALI E ASSEGNA
-function myRandomNumbers(numeroDiValori, max, min, destinationNumb) {
-    destinationNumb.length = 0;
-    while (numeroDiValori > destinationNumb.length) {
-        let number = myRandomNumber(min, max);
-        // 
-        if (destinationNumb.indexOf(number) === -1) {
-            destinationNumb.push(number);
+function myRandomNumbers( max, min, numberMax, ) {
+    const array = []
+    // ciclo per riempire l'array 
+    while (array.length <= numberMax - 1) {
+        // crea un numero random tra 0 e rangenumberMax
+        let randomNumber = Math.floor((Math.random() *max) + min);
+        // verifica se è gia presente nell'array per evitare doppioni
+        if (!array.includes(randomNumber)) {
+            //non è incluso quindi la include
+            array.push(randomNumber)
         }
     }
+    // restituisce un array pieno di numeri diversi tra loro
+    return array
 }
 // importo gli elementi html
 const numberCpuContiner = document.getElementById('numbersCPU');
@@ -26,38 +31,33 @@ const numberUserContiner = document.getElementById('numbersUser');
 const conferm = document.getElementById('buttonConferm');
 const startButton = document.querySelector('.startButton')
 const timer = document.querySelector('.timer')
-let numbersCpu = [];
 let numbersPlayer = [];
 const numberOfNumbers = 5;
+const min = 1
+const max = 9
 
 
 // START PROGRAM 
 // genera un array di 5 numeri random 
-myRandomNumbers(numberOfNumbers, 9, 0, numbersCpu);
-console.log(numbersCpu);
 
-for (let i = 0; i < 5; i++) {
-    numbersCpu = myRandomNumber(9, 0);
-    console.log(numbersCpu);
-    myRandomNumber.push(numbersCpu);
-  }
-  console.log(numbersCpu);
-  alert("Cerca di memorizzare questi cinque numeri: " + numbersCpu);
+   const numbersCpuArray = myRandomNumbers(max,min, numberOfNumbers)
+    console.log(numbersCpuArray);
 
+  alert("Cerca di memorizzare questi cinque numeri: " + (numbersCpuArray));
 
   setTimeout(function() {
-    for (var i = 0; i < 5; i++) {
-      numbersPlayer = parseInt(prompt("inserisci i numeri che ricordi"));
-      for (var f = 0; f < numbersCpu.length; f++) {
-        if (numberUserContiner == numberCpuContiner[f]) {
-          numbersPlayer.push(numbersCpu);
+    for (let i = 0; i < 5; i++) {
+     let numbers = parseInt(prompt("inserisci i numeri che ricordi"));
+      for (let f = 0; f < numbersCpuArray.length; f++) {
+        if (numbers == numbersCpuArray[f]) {
+          numbersPlayer.push(numbers);
         }
       }
 
     }
-    alert("Hai indovinato " + numbersPlayer.length + " numeri. Esattamente i numeri: " + numbersCpu)
-    console.log(numbersCpu)
-  }, 30000)
+    alert("Hai indovinato " + numbersPlayer.length + " numeri. Esattamente i numeri: " + numbersCpuArray)
+    console.log(numbersCpuArray)
+  }, 3000) 
 
 
 
